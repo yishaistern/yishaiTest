@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">gender</th>
+      <th scope="col">change</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="!trackByMode">
+    <tr *ngFor="let item of list; index as i" 
+      [ngClass]="{'table-primary': ((i % 5) === 0), 'table-success': ((i % 5) === 1), 'table-danger': ((i % 5) === 2), 'table-warning': ((i % 5) === 3), 'table-info':  ((i % 5) === 4)}" >
+      <td>{{i}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.age}}</td>
+      <td>{{item.gender}}</td>
+      <td><button type="button" class="btn btn-success" (click)="changeObj(item, i)">Change</button></td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="trackByMode">
+    <tr *ngFor="let item of list; index as i; trackBy: trackByFn" 
+      [ngClass]="{'table-primary': ((i % 5) === 0), 'table-success': ((i % 5) === 1), 'table-danger': ((i % 5) === 2), 'table-warning': ((i % 5) === 3), 'table-info':  ((i % 5) === 4)}" >
+      <td>{{i}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.age}}</td>
+      <td>{{item.gender}}</td>
+      <td><button type="button" class="btn btn-success" (click)="changeObj(item, i)">Change</button></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="take-right btn btn-success" (click)="initList()">init</button>
+<button type="button" class="take-right btn btn-success" (click)="addOne()">add</button>
+<button type="button" class="take-right btn btn-success" (click)="removeOne()">pop</button>
+<button type="button" class="take-right btn btn-success" (click)="list=list2">replace</button>
+<button type="button" class="take-right btn btn-success" (click)="filterList()">filter</button>
+<button type="button" class="take-right btn btn-success" (click)="trackByMode = !trackByMode">{{(trackByMode) ? 'No Track By': 'Track By'}}</button>
